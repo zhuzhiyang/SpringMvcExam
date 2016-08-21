@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,10 +48,20 @@ public class CustomerController {
 		  Customer c=customers.get(i);
 		  if(c.getFirstName().equals(username))
 		  {    
+			
+			  request.setAttribute("username", c.getFirstName());
 			  request.getSession().setAttribute("c", c);
+			  mav.addObject("username", c.getFirstName());
 			  mav=new ModelAndView("menu");
 		  }
 		}
+		return mav;
+	}
+	@RequestMapping("/loginout")
+	public ModelAndView Loginout(HttpServletRequest request) throws Exception {
+		ModelAndView  mav=new ModelAndView("loginout");
+		HttpSession s=request.getSession();
+		s.invalidate();
 		return mav;
 	}
 	@RequestMapping("/TogetCustomerList")
@@ -87,8 +98,8 @@ public class CustomerController {
 		List<Customer> customers=customerService.selectCustomersByPage(page);
 		JSONArray JsonArray = new JSONArray();
 		JSONObject Json = new JSONObject();
-		Json.put("list1", customers);// JSONObject¶ÔÏóÖÐÌí¼Ó¼üÖµ¶Ô
-		JsonArray.add(0, Json);// ½«JSONObject¶ÔÏóÌí¼Óµ½JsonÊý×éÖÐ
+		Json.put("list1", customers);// JSONObjectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½Öµï¿½ï¿½
+		JsonArray.add(0, Json);// ï¿½ï¿½JSONObjectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Jsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		out.write(JsonArray.toString());
 		System.out.println(JsonArray.toString());
 		out.flush();
@@ -131,8 +142,8 @@ public class CustomerController {
 		customerService.updateByPrimaryKeySelective(c);
 		JSONArray JsonArray = new JSONArray();
 		JSONObject Json = new JSONObject();
-		Json.put("c", c);// JSONObject¶ÔÏóÖÐÌí¼Ó¼üÖµ¶Ô
-		JsonArray.add(0, Json);// ½«JSONObject¶ÔÏóÌí¼Óµ½JsonÊý×éÖÐ
+		Json.put("c", c);// JSONObjectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½Öµï¿½ï¿½
+		JsonArray.add(0, Json);// ï¿½ï¿½JSONObjectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Jsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		out.write(JsonArray.toString());
 		out.flush();
 		out.close();
@@ -148,8 +159,8 @@ public class CustomerController {
 		customerService.deleteByPrimaryKey(customerId);
 		JSONArray JsonArray = new JSONArray();
 		JSONObject Json = new JSONObject();
-//		Json.put("c", c);// JSONObject¶ÔÏóÖÐÌí¼Ó¼üÖµ¶Ô
-		JsonArray.add(0, Json);// ½«JSONObject¶ÔÏóÌí¼Óµ½JsonÊý×éÖÐ
+//		Json.put("c", c);// JSONObjectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½Öµï¿½ï¿½
+		JsonArray.add(0, Json);// ï¿½ï¿½JSONObjectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Jsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		out.write(JsonArray.toString());
 		out.flush();
 		out.close();
@@ -165,10 +176,10 @@ public class CustomerController {
 		JSONArray JsonArray = new JSONArray();
 		JSONObject Json = new JSONObject();
 		JSONObject Json1 = new JSONObject();
-		Json.put("list1", addresss);// JSONObject¶ÔÏóÖÐÌí¼Ó¼üÖµ¶Ô
-		Json1.put("customer", c);// JSONObject¶ÔÏóÖÐÌí¼Ó¼üÖµ¶Ô
-		JsonArray.add(0, Json);// ½«JSONObject¶ÔÏóÌí¼Óµ½JsonÊý×éÖÐ
-		JsonArray.add(1, Json1);// ½«JSONObject¶ÔÏóÌí¼Óµ½JsonÊý×éÖÐ
+		Json.put("list1", addresss);// JSONObjectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½Öµï¿½ï¿½
+		Json1.put("customer", c);// JSONObjectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½Öµï¿½ï¿½
+		JsonArray.add(0, Json);// ï¿½ï¿½JSONObjectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Jsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		JsonArray.add(1, Json1);// ï¿½ï¿½JSONObjectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Jsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		out.write(JsonArray.toString());
 		System.out.println(JsonArray.toString());
 		out.flush();

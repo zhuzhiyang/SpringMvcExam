@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@page isELIgnored="false" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%
       String path = request.getContextPath();
       String basePath = request.getScheme() + "://"
                   + request.getServerName() + ":" + request.getServerPort()
                   + path + "/";
+%>
+<%
+String username=request.getParameter("username");
 %>
 <!DOCTYPE HTML>
 <html>
@@ -23,7 +28,7 @@
         <!--<img src="/chinapost/Public/assets/img/top.png">-->
     </div>
 
-    <div class="dl-log">欢迎您，<span class="dl-log-user">root</span><a href="/chinapost/index.php?m=Public&a=logout" title="退出系统" class="dl-log-quit">[退出]</a>
+    <div class="dl-log">欢迎您，<span class="dl-log-user"><%=username%></span><a href="/customerController/loginout" title="退出系统" class="dl-log-quit">[退出]</a>
     </div>
 </div>
 <div class="content">
