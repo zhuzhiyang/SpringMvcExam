@@ -98,8 +98,8 @@ public class CustomerController {
 		List<Customer> customers=customerService.selectCustomersByPage(page);
 		JSONArray JsonArray = new JSONArray();
 		JSONObject Json = new JSONObject();
-		Json.put("list1", customers);// JSONObject��������Ӽ�ֵ��
-		JsonArray.add(0, Json);// ��JSONObject������ӵ�Json������
+		Json.put("list1", customers);
+		JsonArray.add(0, Json);
 		out.write(JsonArray.toString());
 		System.out.println(JsonArray.toString());
 		out.flush();
@@ -142,8 +142,8 @@ public class CustomerController {
 		customerService.updateByPrimaryKeySelective(c);
 		JSONArray JsonArray = new JSONArray();
 		JSONObject Json = new JSONObject();
-		Json.put("c", c);// JSONObject��������Ӽ�ֵ��
-		JsonArray.add(0, Json);// ��JSONObject������ӵ�Json������
+		Json.put("c", c);
+		JsonArray.add(0, Json);
 		out.write(JsonArray.toString());
 		out.flush();
 		out.close();
@@ -159,8 +159,8 @@ public class CustomerController {
 		customerService.deleteByPrimaryKey(customerId);
 		JSONArray JsonArray = new JSONArray();
 		JSONObject Json = new JSONObject();
-//		Json.put("c", c);// JSONObject��������Ӽ�ֵ��
-		JsonArray.add(0, Json);// ��JSONObject������ӵ�Json������
+
+		JsonArray.add(0, Json);
 		out.write(JsonArray.toString());
 		out.flush();
 		out.close();
@@ -176,10 +176,10 @@ public class CustomerController {
 		JSONArray JsonArray = new JSONArray();
 		JSONObject Json = new JSONObject();
 		JSONObject Json1 = new JSONObject();
-		Json.put("list1", addresss);// JSONObject��������Ӽ�ֵ��
-		Json1.put("customer", c);// JSONObject��������Ӽ�ֵ��
-		JsonArray.add(0, Json);// ��JSONObject������ӵ�Json������
-		JsonArray.add(1, Json1);// ��JSONObject������ӵ�Json������
+		Json.put("list1", addresss);
+		Json1.put("customer", c);
+		JsonArray.add(0, Json);
+		JsonArray.add(1, Json1);
 		out.write(JsonArray.toString());
 		System.out.println(JsonArray.toString());
 		out.flush();

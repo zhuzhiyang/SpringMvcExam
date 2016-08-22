@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>   
+﻿<?xml version="1.0" encoding="utf-8" ?>   
 <beans
 xmlns="http://www.springframework.org/schema/beans" 
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
@@ -17,13 +17,13 @@ xsi:schemaLocation="
    http://www.springframework.org/schema/tx/spring-tx.xsd
    http://www.springframework.org/schema/context
    http://www.springframework.org/schema/context/spring-context.xsd">   
-       <!-- 加载包中的controller  注解扫描包 -->  
+    
      <context:component-scan base-package="com.hand.Controller"/> 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<!-- 配置jsp路径的前缀 -->
+		
 		<property name="prefix" value="/WEB-INF/jsp/" />
-		<!-- 配置jsp路径的后缀 -->
+		
 		<property name="suffix" value=".jsp" />
 	</bean>
         <bean id="mappingJacksonHttpMessageConverter"  
@@ -38,14 +38,14 @@ xsi:schemaLocation="
         class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
         <property name="messageConverters">  
             <list>  
-                <ref bean="mappingJacksonHttpMessageConverter" /> <!-- JSON转换器 -->  
+                <ref bean="mappingJacksonHttpMessageConverter" />
             </list>  
         </property>  
     </bean> 
-    <!-- 上传文件 -->
+   
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<!-- 设置上传文件的最大尺寸为1MB -->
+		
 		<property name="maxUploadSize">
 			<value>22242880</value>
 		</property>
